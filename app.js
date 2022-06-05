@@ -25,4 +25,13 @@ function add() {
   writeToLog('+', prevResult, userInput.value, currentResult);
 }
 
+function subtract() {
+  let prevResult = currentResult;
+  currentResult -= +userInput.value;
+  let calculationDescription = createAndWriteOutput(currentResult, '-', userInput.value);
+  outputResult(currentResult, calculationDescription);
+  writeToLog('-', prevResult, userInput.value, currentResult);
+}
+
 addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
