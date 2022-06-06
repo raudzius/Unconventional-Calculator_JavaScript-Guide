@@ -26,12 +26,21 @@ function add() {
 }
 
 function subtract() {
-  let prevResult = currentResult;
-  currentResult -= +userInput.value;
   let calculationDescription = createAndWriteOutput(currentResult, '-', userInput.value);
+
+  currentResult -= +userInput.value;
   outputResult(currentResult, calculationDescription);
   writeToLog('-', prevResult, userInput.value, currentResult);
 }
 
+function multiply() {
+  let calculationDescription = createAndWriteOutput(currentResult, '*', userInput.value);
+
+  currentResult *= +userInput.value;
+  outputResult(currentResult, calculationDescription);
+  writeToLog('*', prevResult, userInput.value, currentResult);
+}
+
 addBtn.addEventListener('click', add);
 subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
