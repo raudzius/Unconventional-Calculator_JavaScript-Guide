@@ -17,36 +17,37 @@ function writeToLog(operator, prevResult, userInput, result) {
   console.log(logEntries);
 }
 
-function add() {
-  let prevResult = currentResult;
-  currentResult += +userInput.value;
-  let calculationDescription = createAndWriteOutput(prevResult, '+', userInput.value);
+function calculateResult(calculationType) {
+  const prevResult = currentResult;
+  if (calculationType === '+') {
+    currentResult += +userInput.value;
+  } else if (calculationType === '-') {
+    currentResult -= +userInput.value;
+  } else if (calculationType === '*') {
+    currentResult *= +userInput.value;
+  } else if (calculationType === '/') {
+    currentResult /= +userInput.value;
+  }
+
+  let calculationDescription = createAndWriteOutput(prevResult, calculationType, userInput.value);
   outputResult(currentResult, calculationDescription);
-  writeToLog('+', prevResult, userInput.value, currentResult);
+  writeToLog(calculationType, prevResult, userInput.value, currentResult);
+}
+
+function add() {
+  calculateResult('+');
 }
 
 function subtract() {
-  let calculationDescription = createAndWriteOutput(currentResult, '-', userInput.value);
-
-  currentResult -= +userInput.value;
-  outputResult(currentResult, calculationDescription);
-  writeToLog('-', prevResult, userInput.value, currentResult);
+  calculateResult('-');
 }
 
 function multiply() {
-  let calculationDescription = createAndWriteOutput(currentResult, '*', userInput.value);
-
-  currentResult *= +userInput.value;
-  outputResult(currentResult, calculationDescription);
-  writeToLog('*', prevResult, userInput.value, currentResult);
+  calculateResult('*');
 }
 
 function divide() {
-  let calculationDescription = createAndWriteOutput(currentResult, '/', userInput.value);
-
-  currentResult /= +userInput.value;
-  outputResult(currentResult, calculationDescription);
-  writeToLog('/', prevResult, userInput.value, currentResult);
+  calculateResult('/');
 }
 
 addBtn.addEventListener('click', add);
